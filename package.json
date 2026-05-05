@@ -1,0 +1,38 @@
+{
+  "name": "researchdesk",
+  "version": "0.1.0",
+  "description": "AI-assisted research management platform for case reports, reviews, studies, and dissertations",
+  "main": "server/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "test": "node --test 'tests/**/*.test.js'",
+    "db:init": "node server/db/init.js",
+    "lint": "eslint .",
+    "format": "prettier --write \"**/*.{js,json,md}\""
+  },
+  "keywords": [
+    "research",
+    "manuscript",
+    "AI",
+    "openai",
+    "academic",
+    "writing",
+    "collaboration"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "openai": "^4.0.0",
+    "better-sqlite3": "^9.0.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.50.0",
+    "prettier": "^3.0.3"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
