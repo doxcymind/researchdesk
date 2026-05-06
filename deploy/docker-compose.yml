@@ -1,0 +1,34 @@
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    environment:
+      PORT: "3000"
+      HOST: "0.0.0.0"
+      COOKIE_SECURE: "true"
+      APP_ORIGIN: "https://researchdesk.example.com"
+      DATA_DIR: "/app/data"
+      SQLITE_FILE: "/app/data/researchdesk.sqlite"
+      SECRET_KEY_FILE: "/app/data/secret.key"
+    volumes:
+      - researchdesk_data:/app/data
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:2
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    restart: unless-stopped
+
+volumes:
+  researchdesk_data:
+  caddy_data:
+  caddy_config:
