@@ -1,4 +1,4 @@
-import Database from 'better-sqlite3';
+import SQLite from 'better-sqlite3';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
@@ -12,7 +12,7 @@ export class Database {
       fs.mkdirSync(dbDir, { recursive: true });
     }
     const dbPath = process.env.DB_PATH || path.join(dbDir, 'researchdesk.db');
-    this.db = new Database(dbPath);
+    this.db = new SQLite(dbPath);
     this.db.pragma('journal_mode = WAL');
   }
 
@@ -39,7 +39,7 @@ export class Database {
         FOREIGN KEY (project_id) REFERENCES projects(id)
       );
 
-      CREATE TABLE IF NOT EXISTS references (
+      CREATE TABLE IF NOT EXISTS refs (
         id TEXT PRIMARY KEY,
         project_id TEXT NOT NULL,
         title TEXT,
