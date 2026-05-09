@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ResearchDesk Dashboard</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header-content">
+      <h1 class="logo">🔬 ResearchDesk</h1>
+      <nav class="nav">
+        <a href="#projects-section" class="nav-link">Projects</a>
+        <a href="#" class="nav-link">Docs</a>
+        <a href="#" class="nav-link">Settings</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="container">
+
+      <!-- STATUS BAR -->
+      <div id="statusBar" class="status-bar"></div>
+
+      <!-- HERO -->
+      <section class="hero">
+        <h2>Welcome to ResearchDesk</h2>
+        <p>AI-assisted research management for case reports, reviews, studies, and dissertations</p>
+        <button class="btn btn-primary" id="newProject">+ New Project</button>
+      </section>
+
+      <!-- FEATURE CARDS -->
+      <section class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📄</div>
+          <h3>Manuscripts</h3>
+          <p>Organize, draft, edit, and manage research papers in one workspace.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🤖</div>
+          <h3>AI Assistant</h3>
+          <p>Summarise literature, generate drafts, and accelerate academic writing.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📚</div>
+          <h3>References</h3>
+          <p>Manage citations, PubMed sources, DOI links, and bibliographies.</p>
+        </div>
+      </section>
+
+      <!-- PROJECTS SECTION -->
+      <section class="projects" id="projects-section">
+        <div class="projects-header">
+          <h3>Your Projects</h3>
+          <button class="btn btn-primary btn-sm" id="newProject2">+ New Project</button>
+        </div>
+        <div id="projectsList" class="projects-list"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2026 ResearchDesk • AI-assisted academic workspace</p>
+  </footer>
+
+</div>
+
+<!-- NEW PROJECT MODAL -->
+<div id="newProjectModal" class="modal-overlay hidden">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>New Research Project</h3>
+      <button class="modal-close" id="closeModal">&times;</button>
+    </div>
+    <form id="newProjectForm">
+      <div class="form-group">
+        <label for="projectTitle">Title <span class="required">*</span></label>
+        <input type="text" id="projectTitle" placeholder="e.g. Type 2 Diabetes Case Study" required />
+      </div>
+      <div class="form-group">
+        <label for="projectType">Type</label>
+        <select id="projectType">
+          <option value="case-report">Case Report</option>
+          <option value="review">Review</option>
+          <option value="study">Study</option>
+          <option value="dissertation">Dissertation</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="projectDesc">Description</label>
+        <textarea id="projectDesc" placeholder="Optional description..." rows="3"></textarea>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" id="cancelProject">Cancel</button>
+        <button type="submit" class="btn btn-primary">Create Project</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="toast hidden"></div>
+
+<script src="/app.js"></script>
+</body>
+</html>

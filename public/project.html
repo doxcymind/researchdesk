@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project – ResearchDesk</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="app">
+
+  <header class="header">
+    <div class="container header-content">
+      <h1 class="logo"><a href="/dashboard.html" style="text-decoration:none;color:inherit">🔬 ResearchDesk</a></h1>
+      <nav class="nav">
+        <a href="/dashboard.html" class="nav-link">← Dashboard</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <div id="projectHeader" style="margin-bottom:2rem">
+        <h2 id="projectTitle" style="font-size:1.75rem;font-weight:700"></h2>
+        <span id="projectType" class="project-type" style="margin-top:8px;display:inline-block"></span>
+        <p id="projectDesc" style="margin-top:8px;color:#6b7280"></p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card" style="cursor:default">
+          <div class="feature-icon">📄</div>
+          <h3>Manuscript</h3>
+          <p>Coming soon — draft and edit your paper here.</p>
+        </div>
+        <div class="feature-card" style="cursor:default">
+          <div class="feature-icon">🤖</div>
+          <h3>AI Assistant</h3>
+          <p>Coming soon — summarise and generate content.</p>
+        </div>
+        <div class="feature-card" style="cursor:default">
+          <div class="feature-icon">📚</div>
+          <h3>References</h3>
+          <p>Coming soon — manage citations and bibliographies.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 ResearchDesk • AI-assisted academic workspace</p>
+  </footer>
+
+</div>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  if (id) {
+    fetch(`/api/projects/${id}`)
+      .then(r => r.json())
+      .then(p => {
+        document.title = p.title + ' – ResearchDesk';
+        document.getElementById('projectTitle').textContent = p.title;
+        document.getElementById('projectType').textContent = p.type;
+        document.getElementById('projectDesc').textContent = p.description || '';
+      })
+      .catch(() => {
+        document.getElementById('projectTitle').textContent = 'Project not found';
+      });
+  }
+</script>
+</body>
+</html>

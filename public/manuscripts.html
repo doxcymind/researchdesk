@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResearchDesk Manuscripts</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<div class="app">
+
+<header class="header">
+    <div class="container header-content">
+
+        <h1 class="logo">🔬 ResearchDesk</h1>
+
+        <nav class="nav">
+            <a href="/dashboard.html" class="nav-link">Dashboard</a>
+            <a href="#" class="nav-link">Projects</a>
+            <a href="#" class="nav-link">Settings</a>
+        </nav>
+
+    </div>
+</header>
+
+<main class="main">
+
+<div class="container">
+
+<section class="editor-section">
+
+    <h2>📝 Manuscript Workspace</h2>
+
+    <input
+        type="text"
+        id="projectTitle"
+        placeholder="Enter manuscript title"
+        class="editor-title"
+    >
+
+    <textarea
+        id="editor"
+        class="editor"
+        placeholder="Start writing your manuscript here..."
+    ></textarea>
+
+    <button id="saveBtn" class="btn btn-primary">
+        Save Manuscript
+    </button>
+
+    <p id="saveMessage"></p>
+
+</section>
+
+</div>
+
+</main>
+
+</div>
+
+<script>
+
+const saveBtn = document.getElementById('saveBtn');
+
+saveBtn.addEventListener('click', () => {
+
+    const title =
+        document.getElementById('projectTitle').value;
+
+    const content =
+        document.getElementById('editor').value;
+
+    localStorage.setItem(
+        'researchdesk_title',
+        title
+    );
+
+    localStorage.setItem(
+        'researchdesk_content',
+        content
+    );
+
+    document.getElementById('saveMessage').innerText =
+        '✅ Manuscript saved successfully';
+
+});
+
+window.onload = () => {
+
+    const savedTitle =
+        localStorage.getItem('researchdesk_title');
+
+    const savedContent =
+        localStorage.getItem('researchdesk_content');
+
+    if (savedTitle) {
+        document.getElementById('projectTitle').value =
+            savedTitle;
+    }
+
+    if (savedContent) {
+        document.getElementById('editor').value =
+            savedContent;
+    }
+
+};
+
+</script>
+
+</body>
+</html>
